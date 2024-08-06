@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 
 function Overview() {
-  const [data, setData] = useState({ totalPackages: 20, completedBuilds: 15, failedBuilds: 3, inProgress: 2 });
+  const [data, setData] = useState({ totalPackages: 0, completedBuilds: 0, failedBuilds: 0, inProgress: 0 });
 
-  // Use your actual data fetching logic here
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/api/data')
-  //     .then((response) => response.json())
-  //     .then((data) => setData(data));
-  // }, []);
-
+  useEffect(() => {
+    // Fetch data from the API
+    fetch('/data.json')
+      .then(res => res.json())
+      .then(data => {
+        setData({
+          totalPackages: data.totalPackages,
+          completedBuilds: data.completedBuilds,
+          failedBuilds: data.failedBuilds,
+          inProgress: data.inProgress
+        });
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
   return (
     <div>
