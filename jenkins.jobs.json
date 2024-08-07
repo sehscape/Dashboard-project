@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "66aa3a5d9896dc39b637158c"
+  },
+  "packageName": "A",
+  "version": "8.0",
+  "publishedVersion": "8.0",
+  "distro": "rh8.8",
+  "status": "SUCCESS",
+  "jobDetails": {
+    "jobId": {
+      "id": "2001",
+      "queueID": 279996
+    },
+    "duration": 158.2524833333,
+    "jobUrl": "jenkins-URL1"
+  },
+  "failureDetails": {
+    "stage": {
+      "stageName": null,
+      "stageDetails": null
+    },
+    "reason": {
+      "failureReason": null,
+      "additionalInfo": null
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "66aa3a5d9896dc39b637158d"
+  },
+  "packageName": "B",
+  "version": "8.1",
+  "publishedVersion": "8.1",
+  "distro": "rh8.9",
+  "status": "SUCCESS",
+  "jobDetails": {
+    "jobId": {
+      "id": "2002",
+      "queueID": 279997
+    },
+    "duration": 159.2524833333,
+    "jobUrl": "jenkins-URL2"
+  },
+  "failureDetails": {
+    "stage": {
+      "stageName": null,
+      "stageDetails": null
+    },
+    "reason": {
+      "failureReason": null,
+      "additionalInfo": null
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "66aa3a5d9896dc39b637158e"
+  },
+  "packageName": "C",
+  "version": "8.2",
+  "publishedVersion": "8.2",
+  "distro": "rh8.10",
+  "status": "SUCCESS",
+  "jobDetails": {
+    "jobId": {
+      "id": "2003",
+      "queueID": 279998
+    },
+    "duration": 160.2524833333,
+    "jobUrl": "jenkins-URL3"
+  },
+  "failureDetails": {
+    "stage": {
+      "stageName": null,
+      "stageDetails": null
+    },
+    "reason": {
+      "failureReason": null,
+      "additionalInfo": null
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "66aa3a5d9896dc39b637158f"
+  },
+  "packageName": "D",
+  "version": "8.3",
+  "publishedVersion": "8.3",
+  "distro": "rh8.11",
+  "status": "SUCCESS",
+  "jobDetails": {
+    "jobId": {
+      "id": "2004",
+      "queueID": 279999
+    },
+    "duration": 161.2524833333,
+    "jobUrl": "jenkins-URL4"
+  },
+  "failureDetails": {
+    "stage": {
+      "stageName": null,
+      "stageDetails": null
+    },
+    "reason": {
+      "failureReason": null,
+      "additionalInfo": null
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "66aa3a5d9896dc39b6371590"
+  },
+  "packageName": "E",
+  "version": "8.4",
+  "publishedVersion": "8.4",
+  "distro": "rh8.12",
+  "status": "SUCCESS",
+  "jobDetails": {
+    "jobId": {
+      "id": "2005",
+      "queueID": 280000
+    },
+    "duration": 162.2524833333,
+    "jobUrl": "jenkins-URL5"
+  },
+  "failureDetails": {
+    "stage": {
+      "stageName": null,
+      "stageDetails": null
+    },
+    "reason": {
+      "failureReason": null,
+      "additionalInfo": null
+    }
+  }
+}]
