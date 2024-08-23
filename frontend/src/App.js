@@ -2,10 +2,9 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
+import Overview from "./pages/Overview";
 import Report from "./pages/Report";
 import Recipe from "./pages/Recipe";
-import Calendar from "./pages/Calendar";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -28,11 +27,10 @@ function App() {
           {toggle && <div className="col-4 col-md-2"></div>}
           <div className="col">
             <Routes>
-              <Route path="/" element={<Dashboard Toggle={Toggle} />} />
-              <Route path="/Dashboard" element={<Dashboard Toggle={Toggle} />} />
+              <Route path="/" element={<Overview Toggle={Toggle} />} />
+              <Route path="/dashboard" element={<Overview Toggle={Toggle} />} />
               <Route path="/report" element={<Report Toggle={Toggle} />} />
               <Route path="/recipe" element={<Recipe Toggle={Toggle} />} />
-              <Route path="/calendar" element={<Calendar Toggle={Toggle} />} />
             </Routes>
           </div>
         </div>

@@ -1,35 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import 'bootstrap/js/dist/dropdown';
 import 'bootstrap/js/dist/collapse';
 import '../css/styles.css';
 
 function Nav({ Toggle }) {
-  const location = useLocation();
-
-  // Map pathnames to human-readable names
-  const pageNames = {
-    '/': 'Overview',
-    '/dashboard': 'Dashboard',
-    '/report': 'Report',
-    '/recipe': 'Recipe',
-    '/calendar': 'Calendar'
-  };
-
-  // Get the page name based on the current pathname
-  const pageName = pageNames[location.pathname] || 'Navbar';
-
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark custom-navbar">
-      <i className="navbar-brand bi bi-justify-left fs-4" onClick={Toggle}>
-        {pageName}
-      </i>
-      
-      {/* Conditionally render the heading for the Recipe page */}
-      {location.pathname === '/recipe' && (
-        <h2 style={{ color: 'black', marginLeft: '10px',textAlign: "center" }}>Jenkins Summary Report</h2>
-      )}
-
+    <nav className="navbar navbar-expand-sm navbar-dark custom-navbar"> {/* Example color class */}
+      <i className="navbar-brand bi bi-justify-left fs-4" onClick={Toggle}>Jenkins Summary</i>
       <button
         className="navbar-toggler d-lg-none"
         type="button"
@@ -41,7 +18,6 @@ function Nav({ Toggle }) {
       >
         <i className="bi bi-justify"></i>
       </button>
-
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
           <li className="nav-item dropdown">
@@ -67,4 +43,4 @@ function Nav({ Toggle }) {
   );
 }
 
-export default Nav;
+export default Nav; 

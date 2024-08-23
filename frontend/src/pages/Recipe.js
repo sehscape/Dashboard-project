@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import '../css/styles.css'; // Ensure this path is correct
+import '../css/styles.css'; 
 import Nav from "../components/Nav";
+import CommentSection from "../components/CommentSection"; // Import the new component
 
 const Recipe = ({ Toggle }) => {
   const [data, setData] = useState(null);
   const [selectedOwner, setSelectedOwner] = useState('');
   const [filteredReport, setFilteredReport] = useState([]);
   const [selectedPackageName, setSelectedPackageName] = useState('PackageName'); // Default name
-  const [clickedPackageName, setClickedPackageName] = useState('PackageName'); // For displaying in the new table
+//  const [clickedPackageName, setClickedPackageName] = useState('PackageName'); // For displaying in the new table
   
   // States for checkboxes
   const [binaryBroken, setBinaryBroken] = useState(false);
@@ -44,7 +45,7 @@ const Recipe = ({ Toggle }) => {
 
   const handlePackageNameClick = (packageName) => {
     setSelectedPackageName(packageName);
-    setClickedPackageName(packageName); // Update the clicked package name for the new table
+//    setClickedPackageName(packageName); // Update the clicked package name for the new table
     setIsEditing(false); // Reset the editing state when a new package is clicked
   };
 
@@ -87,177 +88,166 @@ const Recipe = ({ Toggle }) => {
     <div className="jenkins-report">
       <Nav Toggle={Toggle} />
       
-      <div className="cards-container">
-      
-        <div className="outer-card">
-          <div className="search-section">
-            <select value={selectedOwner} onChange={handleOwnerChange}>
-              <option value="">ALL</option>
-              {uniqueOwners.map((owner, index) => (
-                <option key={index} value={owner}>
-                  {owner}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="table-section">
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Package Name</th>
-                  <th>Recipe</th>
-                  <th>Docker</th>
-                  <th>CI Links</th>
-                  <th>Image</th>
-                  <th>Binary</th>
-                  <th>Size</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredReport.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>
-                      <span 
-                        onClick={() => handlePackageNameClick(row.packageName)} 
-                        style={{ cursor: 'pointer', color: 'blue' }}
-                      >
-                        {row.packageName}
-                      </span>
-                    </td>
-                    <td>{row.recipe}</td>
-                    <td>{row.docker}</td>
-                    <td>{row.ciLinks}</td>
-                    <td>{row.image}</td>
-                    <td>{row.binary}</td>
-                    <td>{row.size}</td>
-                  </tr>
+      <div className="main-container">
+        <div className="cards-container">
+          <div className="outer-card">
+            <div className="search-section">
+              <select value={selectedOwner} onChange={handleOwnerChange}>
+                <option value="">ALL</option>
+                {uniqueOwners.map((owner, index) => (
+                  <option key={index} value={owner}>
+                    {owner}
+                  </option>
                 ))}
-              </tbody>
-            </table>
+              </select>
+            </div>
+            <div className="table-section">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Package Name</th>
+                    <th>Recipe</th>
+                    <th>Docker</th>
+                    <th>CI Links</th>
+                    <th>Image</th>
+                    <th>Binary</th>
+                    <th>Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredReport.map((row) => (
+                    <tr key={row.id}>
+                      <td>{row.id}</td>
+                      <td>
+                        <span 
+                          onClick={() => handlePackageNameClick(row.packageName)} 
+                          style={{ cursor: 'pointer', color: 'blue' }}
+                        >
+                          {row.packageName}
+                        </span>
+                      </td>
+                      <td>{row.recipe}</td>
+                      <td>{row.docker}</td>
+                      <td>{row.ciLinks}</td>
+                      <td>{row.image}</td>
+                      <td>{row.binary}</td>
+                      <td>{row.size}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {/* Include the CommentSection component below the tables */}
+            <CommentSection />
           </div>
           
-          {/* New table section that displays the clicked package name */}
-          {clickedPackageName && (
-            <table className="package-table">
-              <thead>
-                <tr>
-                  <th>{clickedPackageName}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Comment</td>
-                </tr>
-              </tbody>
-            </table>
-          )}
-        </div>
-        
-        <div className="outer-card">
-          <div className="recipe-table">
-            <h2>{selectedPackageName}</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th colSpan={5}>Recipe</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fixedSizeRecipes.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {row.map((recipe, index) => (
-                      <td key={index}>{recipe}</td>
-                    ))}
+          <div className="outer-card">
+            <div className="recipe-table">
+              <h2>{selectedPackageName}</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan={5}>Recipe</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <button className="download-btn">Download Links</button>
-            
-            {/* Checkbox and button section */}
-            <div className="status-section">
-              <label>
-                <input 
-                  type="checkbox" 
-                  checked={binaryBroken} 
-                  onChange={() => setBinaryBroken(!binaryBroken)} 
-                  disabled={!isEditing}
-                /> Binary Broken
-              </label>
-              <label>
-                <input 
-                  type="checkbox" 
-                  checked={imageBroken} 
-                  onChange={() => setImageBroken(!imageBroken)} 
-                  disabled={!isEditing}
-                /> Image Broken
-              </label>
-              <label>
-                <input 
-                  type="checkbox" 
-                  checked={recipeBroken} 
-                  onChange={() => setRecipeBroken(!recipeBroken)} 
-                  disabled={!isEditing}
-                /> Recipe Broken
-              </label>
-              <label>
-                <input 
-                  type="checkbox" 
-                  checked={dockerfileBroken} 
-                  onChange={() => setDockerfileBroken(!dockerfileBroken)} 
-                  disabled={!isEditing}
-                /> Dockerfile Broken
-              </label>
-              <label>
-                <input 
-                  type="checkbox" 
-                  checked={ciBroken} 
-                  onChange={() => setCiBroken(!ciBroken)} 
-                  disabled={!isEditing}
-                /> CI Broken
-              </label>
+                </thead>
+                <tbody>
+                  {fixedSizeRecipes.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((recipe, index) => (
+                        <td key={index}>{recipe}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button className="download-btn">Download Links</button>
               
-              <div className="button-section">
-                {!isEditing ? (
-                  <button className="edit-btn" onClick={handleEdit}>
-                    Edit
-                  </button>
-                ) : (
-                  <button className="submit-btn" onClick={handleSubmit}>
-                    Submit
-                  </button>
-                )}
+              {/* Checkbox and button section */}
+              <div className="status-section">
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={binaryBroken} 
+                    onChange={() => setBinaryBroken(!binaryBroken)} 
+                    disabled={!isEditing}
+                  /> Binary Broken
+                </label>
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={imageBroken} 
+                    onChange={() => setImageBroken(!imageBroken)} 
+                    disabled={!isEditing}
+                  /> Image Broken
+                </label>
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={recipeBroken} 
+                    onChange={() => setRecipeBroken(!recipeBroken)} 
+                    disabled={!isEditing}
+                  /> Recipe Broken
+                </label>
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={dockerfileBroken} 
+                    onChange={() => setDockerfileBroken(!dockerfileBroken)} 
+                    disabled={!isEditing}
+                  /> Dockerfile Broken
+                </label>
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={ciBroken} 
+                    onChange={() => setCiBroken(!ciBroken)} 
+                    disabled={!isEditing}
+                  /> CI Broken
+                </label>
+                
+                <div className="button-section">
+                  {!isEditing ? (
+                    <button className="edit-btn" onClick={handleEdit}>
+                      Edit
+                    </button>
+                  ) : (
+                    <button className="submit-btn" onClick={handleSubmit}>
+                      Submit
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="legends-section">
-        <h3>Legends</h3>
-        <div className="legends">
-          <div className="legend-item">
-            <span className="legend-color na"></span> NA
-          </div>
-          <div className="legend-item">
-            <span className="legend-color all-good"></span> All Good
-          </div>
-          <div className="legend-item">
-            <span className="legend-color failedlessthan2"></span> Failed less than 2 times
-          </div>
-          <div className="legend-item">
-            <span className="legend-color failedmorethan2"></span> Failed more than 2 times
-          </div>
-          <div className="legend-item">
-            <span className="legend-color jenkins-broken"></span> Jenkins broken
-          </div>
-          <div className="legend-item">
-            <span className="legend-color broken"></span> Broken
-          </div>
-          <div className="legend-item">
-            <span className="legend-color job-not-run"></span> Job not run
+
+
+
+        <div className="legends-section">
+          <h3>Legends</h3>
+          <div className="legends">
+            <div className="legend-item">
+              <span className="legend-color na"></span> NA
+            </div>
+            <div className="legend-item">
+              <span className="legend-color all-good"></span> All Good
+            </div>
+            <div className="legend-item">
+              <span className="legend-color failedlessthan2"></span> Failed less than 2 times
+            </div>
+            <div className="legend-item">
+              <span className="legend-color failedmorethan2"></span> Failed more than 2 times
+            </div>
+            <div className="legend-item">
+              <span className="legend-color jenkins-broken"></span> Jenkins broken
+            </div>
+            <div className="legend-item">
+              <span className="legend-color broken"></span> Broken
+            </div>
+            <div className="legend-item">
+              <span className="legend-color job-not-run"></span> Job not run
+            </div>
           </div>
         </div>
       </div>

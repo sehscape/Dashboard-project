@@ -1,13 +1,29 @@
+body {
+  font-family: Arial, sans-serif; /* Example font family */
+}
+
+/* Sidebar Styles */
+.list-group a:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+/* Navbar Styles */
 .custom-navbar {
-  background-color: rgb(227, 243, 252); /* Dark grey or any color you prefer */
-  border-radius: 5px; /* Adjust the value as needed for the curve */
-  padding: 0.5rem 1rem; /* Optional: Adjust padding to control spacing */
-  margin-bottom: 20px
+  background-color: rgb(227, 243, 252);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif; /* Apply the same font as the rest of the app */
+  font-style: normal; /* Ensure font is not italicized */
 }
 
 .custom-navbar .navbar-brand,
 .custom-navbar .nav-link {
-  color: #000000; /* Navbar text color */
+  color: #000000;
+  font-family: Arial, sans-serif; /* Ensure consistent font in links as well */
+  font-style: normal; /* Ensure font is not italicized */
 }
 
 /* Common styles for white containers */
@@ -33,118 +49,30 @@
   box-shadow: 0 0 10px rgba(235, 209, 209, 0.1);
 }
 
-/* Adjust main content when drawer is open */
-.report {
-  transition: margin-right 0.3s ease;
-}
 
-.drawer-open {
-  margin-right: 300px; /* Adjust the margin to make room for the drawer */
-}
-
-/* Drawer styles */
-.drawer {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  background-color: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
-  z-index: 1000;
-}
-
-.drawer.open {
-  right: 0; /* Slides in when open */
-}
-
-.drawer-content {
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.drawer .close-btn {
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  float: right;
-}
-
-/* Search Bar Styles */
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.search-bar input {
-  padding: 10px;
-  width: 300px;
-  margin-right: 10px;
-  background-color: #9b9b9b;
-  color: #e0e0e0;
-  border: 1px solid #555;
-}
-
-.search-bar button {
-  padding: 10px;
-  background-color: #5a9fee; /* Dark green */
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-}
-
-.search-bar button:hover {
-  background-color: #7accec; /* Darker green */
-}
-
-/* Report Page Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #71797E; /* Dark table background */
-}
-
-table, th, td {
-  border: 1px solid #444;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-  color: #e0e0e0;
-}
-
-th {
-  background-color: #333; /* Darker header */
-}
-
-/* Sidebar Styles */
-.list-group a:hover {
-  background-color: blue;
-  color: white;
-  cursor: pointer;
-}
-
-/* Dashboard Page */
+/* Overview Page */
 .overviewcontainer {
   width: 100%; /* Ensure it spans the full width of the viewport */
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(102, 102, 102, 0.1);
   display: flex;
   flex-direction: column;
   color: #e0e0e0;
   box-sizing: border-box; /* Include padding and border in the width */
+  margin: 20px auto; /* Center horizontally and add space above and below */
 }
 
-
+.container {
+  max-width: 1200px; /* Fixed width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Include padding and border in the width */
+}
 
 .overview {
   display: flex;
@@ -156,20 +84,15 @@ th {
 }
 
 .card {
-  flex: 1;
-  min-width: 200px; /* Minimum width of the card */
-  max-width: 200px; /* Maximum width of the card */
-  height: 150px; /* Fixed height of the card */
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex: 1 1 200px;
+  padding: 20px;
   border-radius: 10px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .blue {
@@ -206,6 +129,7 @@ h1 {
 }
 
 
+
 /* Report.css */
 .report {
   padding: 20px;
@@ -215,33 +139,36 @@ h1 {
   display: flex;
   flex-direction: column;
   color: #e0e0e0;
+  margin: 20px auto; /* Center horizontally and add space above and below */
 }
 
 .report h1 {
   text-align: center;
-  color: #454948;
+  color: #000000;
 }
 
 .search-bar {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .search-bar input {
   padding: 10px;
   width: 300px;
   margin-right: 10px;
-  background-color: #414040;
+  background-color: #ffffff;
   color: #e0e0e0;
-  border: 1px solid #555;
+  border: 1px solid #dceeff;
 }
 
 .search-bar button {
-  padding: 10px;
-  background-color: #198754; /* Dark green */
+  background-color: #2282e9; /* Dark green */
   color: #ffffff;
   border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
 }
 
 table {
@@ -266,28 +193,216 @@ th {
 }
 
 
+/* Adjust main content when drawer is open */
+.report {
+  transition: margin-right 0.3s ease;
+}
+
+.drawer-open {
+  margin-right: 300px; /* Adjust the margin to make room for the drawer */
+}
+
+/* Drawer styles */
+.drawer {
+  position: fixed;
+  color: #212529;
+  top: 0;
+  right: 0; /* Change to 0 so it’s fully visible when open */
+  width: 400px; /* Fixed width */
+  height: 100vh; /* Full viewport height */
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Use transform for smoother transitions */
+  transform: translateX(100%); /* Start off-screen */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+}
+
+.drawer.open {
+  transform: translateX(0); /* Slide in from the right */
+}
+
+.drawer-content {
+  padding: 20px;
+  overflow-y: auto; /* Allows vertical scrolling if needed */
+  flex: 1; /* Allow content to expand */
+}
+
+.drawer .close-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+/***********************/
+
+
+/* Comment Section */
+.comment-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.comment-section h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.comment-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.comment-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.comment-content span {
+  display: block;
+  width: 500px; /* Fixed width */
+  height: auto; /* Height adjusts based on text */
+  word-wrap: break-word; /* Wrap long words */
+}
+
+.comment-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.comment-buttons button {
+  margin-left: 10px;
+}
+
+.edit-buttons button {
+  margin-right: 10px; /* Adjust the value to set the desired space */
+}
+
+.edit-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.edit-textarea {
+  width: 500px;
+  height: auto; 
+  min-height: 60px; 
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; 
+  box-sizing: border-box;
+}
+
+
+.comment-section button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #2282e9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.comment-section button:hover {
+  background-color: #2282e9;
+}
+
+.comment-section button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.add-comment-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-comment-container input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.add-comment-container button {
+  background-color: 2282e9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.add-comment-container button:hover {
+  background-color: #2282e9;
+}
+
+.submit-button-container {
+  margin-top: 10px;
+}
+
+.submit-button-container button {
+  width: 120px;
+}
+/* End */
+
+
 /* Recipe.css */
 .jenkins-report {
   padding: 20px;
-  background-color: #f5f5f5; /* Light background for the whole page */
+  background-color: white; /* Same background color as Overview and Report pages */
+  border-radius: 10px; /* Consistent border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+  max-width: 100%; /* Consistent maximum width */
+  margin: 20px auto; /* Center horizontally and add space above and below */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
-.header-section {
+.main-container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between header elements */
-  margin-bottom: 20px;
-  background-color: #ffffff; /* Background color for the header section */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the header box */
-  max-width: 100%; /* Limit width for large screens */
-  margin: 0 auto; /* Center the header box */
+  gap: 20px;
 }
 
-.header-section h1 {
-  margin: 0;
-  color:#000000
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.outer-card {
+  flex: 1 1 auto;
+  background-color:  rgb(227, 243, 252);
+  max-width: 100%; /* Ensure it does not exceed the width of its container */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-section {
@@ -296,7 +411,6 @@ th {
   align-items: center;
   margin-bottom: 20px; /* Space before the search section */
 }
-
 .search-section select,
 .search-section button {
   padding: 8px 12px;
@@ -304,63 +418,29 @@ th {
   border: 1px solid #ccc;
 }
 
-.search-section button {
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-.search-section button:hover {
-  background-color: #45a049;
-}
-
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Space between the cards */
-  background-color: rgb(227, 243, 252);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(235, 209, 209, 0.1);
-  margin-top: 20px;
-}
-
-.outer-card {
-  flex: 1 1 auto; /* Allow the card to grow and shrink based on its content */
-  max-width: 100%; /* Ensure it does not exceed the width of its container */
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; /* Handle overflow if content is too wide */
-  box-sizing: border-box;
+.table-section td {
+  color: #000000; /* Dark gray font color for data cells */
 }
 
 .recipe-table {
-  width: 100%; /* Ensure the table takes full width of its container */
-  border-collapse: collapse; /* Ensure borders and spacing collapse into a single line */
-}
-
-.recipe-table table {
-  width: 100%; /* Table takes up full width */
-}
-
- .table-section table , .package-table{
-  width: 80%;
-  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .recipe-table th, .recipe-table td, .table-section th, .table-section td ,.package-table td, .package-table th {
   padding: 10px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff;
   white-space: nowrap; /* Prevent text wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Ellipsis for overflow text */
 }
 
+.recipe-table td {
+  color: #000000; /* Dark gray font color for data cells */
+}
+
 .recipe-table th, .table-section th,.package-table th {
-  background-color: #4CAF50;
+  background-color: #2282e9;
   color: white;
 }
 
@@ -372,7 +452,7 @@ th {
 .download-btn {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #2282e9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -383,7 +463,7 @@ th {
 }
 
 .download-btn:hover {
-  background-color: #45a049;
+  background-color: #7da6ff;
 }
 
 .status-section {
@@ -408,7 +488,7 @@ th {
 
 .edit-btn, .submit-btn {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #2282e9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -416,60 +496,44 @@ th {
 }
 
 .edit-btn:hover, .submit-btn:hover {
-  background-color: #45a049;
+  background-color: #7da6ff;
 }
-
 
 .legends-section {
-  margin-top: 20px; /* Space before the legends section */
-  background-color: #ffffff; /* Background color for the legends section */
-  padding: 20px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 10px 20px; /* Adjust padding as needed */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the legends box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow-x: auto; /* Allow horizontal scrolling if needed */
-  align-items: center; /* Center items vertically */
-  white-space: nowrap; /* Prevent text wrapping */
+  flex-wrap: nowrap;
+  overflow-x: auto; /* Allows horizontal scrolling if legends overflow */
 }
 
-.legends-section h3 {
-  margin-right: 20px; /* Add space to the right side of the "Legends" title */
+.legends {
+  display: flex;
+  align-items: center;
 }
 
 .legend-item {
-  display: inline-flex; /* Ensure items are laid out horizontally */
+  display: flex;
   align-items: center;
-  margin-right: 20px; /* Space between legend items */
+  margin-right: 20px; /* Space between legends */
 }
 
 .legend-color {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   display: inline-block;
-  margin-right: 5px; /* Space between the color dot and the text */
+  margin-right: 5px; /* Space between color box and text */
+  border-radius: 50%;
 }
 
-/* Legend colors */
-.legend-color.na { background-color: #e0e0e0; } /* Example color for NA */
-.legend-color.all-good { background-color: #00e600; } /* Example color for All Good */
-.legend-color.failedlessthan2 { background-color: #ffcc00; } /* Example color for Failed */
-.legend-color.failedmorethan2 { background-color: #fd7f00; }
-.legend-color.jenkins-broken { background-color: #ff66ff; } /* Example color for Jenkins broken */
-.legend-color.broken { background-color: #ff0000; } /* Example color for Broken */
-.legend-color.job-not-run { background-color: #ffffff; border: 1px solid #000000; } /* Example color for Job not run */
-
-.legend-item:last-child { /* Optional styling to make sure the legend items are aligned properly */
-  margin-right: 0; /* Remove margin for the last item to avoid extra space */
-}
-
-
-  /*calendar css */
-
-  .calendar-container {
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+/* Example colors for legend items */
+.legend-color.na { background-color: #d3d3d3; }
+.legend-color.all-good { background-color: #4caf50; }
+.legend-color.failedlessthan2 { background-color: #ffeb3b; }
+.legend-color.failedmorethan2 { background-color: #f44336; }
+.legend-color.jenkins-broken { background-color: #9e9e9e; }
+.legend-color.broken { background-color: #ff5722; }
+.legend-color.job-not-run { background-color: #9c27b0; }

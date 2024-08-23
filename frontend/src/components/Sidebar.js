@@ -23,10 +23,6 @@ function Sidebar() {
           <i className="bi bi-table fs-5 me-3"></i>
           <span>Recipe</span>
         </NavLink>
-        <NavLink to="/calendar" className="list-group-item py-2 my-1">
-          <i className="bi bi-calendar fs-5 me-3"></i>
-          <span>Calendar</span>
-        </NavLink>
       </div>
     </div>
   );

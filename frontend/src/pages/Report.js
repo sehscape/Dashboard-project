@@ -4,30 +4,45 @@ import '../css/styles.css';
 
 const Report = ({ Toggle }) => {
   const [jobs, setJobs] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null); // State for selected job
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [recipes, setRecipes] = useState([]);
+//  const [comment, setComment] = useState(''); // State for the comment
 
   useEffect(() => {
     fetch('http://localhost:4000/getjobs')
       .then(response => response.json())
       .then(data => setJobs(data))
       .catch(error => console.error('Error fetching data:', error));
+
+    fetch('/detail.json')
+      .then(response => response.json())
+      .then(data => setRecipes(data.recipes))
+      .catch(error => console.error('Error fetching recipes data:', error));
   }, []);
 
   const handleRowClick = (job) => {
-    setSelectedJob(job); // Set selected job
+    setSelectedJob(job);
   };
 
   const closeDrawer = () => {
-    setSelectedJob(null); // Close drawer by setting selectedJob to null
+    setSelectedJob(null);
   };
+
+  const chunkRecipes = (recipes, chunkSize) => {
+    const result = [];
+    for (let i = 0; i < recipes.length; i += chunkSize) {
+      result.push(recipes.slice(i, i + chunkSize));
+    }
+    return result;
+  };
+
+  const recipesInRows = chunkRecipes(recipes.flat(), 4);
 
   return (
     <div className={`report ${selectedJob ? 'drawer-open' : ''}`}>
       <Nav Toggle={Toggle} />
 
       <div className="header-container">
-        <h1>Jenkins Summary Report</h1>
-
         <div className="search-bar">
           <input type="text" placeholder="Enter Package Name" />
           <button className="button">Search</button>
@@ -65,7 +80,6 @@ const Report = ({ Toggle }) => {
         </table>
       </div>
 
-      {/* Right Drawer for Job Details */}
       <div className={`drawer ${selectedJob ? 'open' : ''}`}>
         {selectedJob && (
           <div className="drawer-content">
@@ -77,6 +91,28 @@ const Report = ({ Toggle }) => {
             <p><strong>Status:</strong> {selectedJob.status}</p>
             <p><strong>Job URL:</strong> <a href={selectedJob.jobDetails.jobUrl} target="_blank" rel="noopener noreferrer">View Job</a></p>
             <p><strong>Duration:</strong> {selectedJob.jobDetails.duration.toFixed(2)} seconds</p>
+
+            <div className="recipe-grid">
+              <h3>Package Recipe</h3>
+              <div className="recipe-table-container">
+                <table className="recipe-table">
+                  <tbody>
+                    {recipesInRows.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((version, colIndex) => (
+                          <td key={colIndex}>{version}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+           {/* Non-editable Comment Section 
+            <div className="comment-section">
+              <p className="comment-text">{comment}</p>
+            </div>  */}
           </div>
         )}
       </div>
