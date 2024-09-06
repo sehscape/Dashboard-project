@@ -84,15 +84,20 @@ body {
 }
 
 .card {
-  flex: 1 1 200px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  color: #000000;
-  font-size: 20px;
-  font-weight: bold;
+  flex: 1;
+ min-width: 200px; /* Minimum width of the card */
+ max-width: 200px; /* Maximum width of the card */
+ height: 150px; /* Fixed height of the card */
+ margin: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ border-radius: 10px;
+ color: rgb(0, 0, 0);
+ font-size: 18px;
+ font-weight: bold;
+ text-align: center;
 }
 
 .blue {
