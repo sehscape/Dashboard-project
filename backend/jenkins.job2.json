@@ -1,0 +1,153 @@
+[
+    {
+      "_id": {
+        "$oid": "66c0570c99488605a21a3e23"
+      },
+      "packageName": "Redis",
+      "version": "7.0",
+      "publishedVersion": "7.0",
+      "successTime": "2024-08-16",
+      "failureTime": "2024-08-15",
+      "privateRunReason": "Timeout on Redis servers",
+      "distroSuccess": "rh8.8,rh8.9",
+      "distroFailure": "sl12.5,sl15.2",
+      "status": "FAILURE",
+      "comment": {
+        "date": "2024-08-16",
+        "commentText": "R: Timeout issues with Redis servers"
+      },
+      "owner": "ownerCD",
+      "unavailableDistros": "sl12.0, sl12.1, rh7.9",
+      "failureCount": {
+        "sl12.5": 2,
+        "sl15.2": 1,
+        "rh8.8": 0
+      },
+      "distroFailureTime": {
+        "sl12.5": "2024-08-15",
+        "sl15.2": "2024-08-14"
+      },
+      "distroLastRunTime": {
+        "rh8.8": "2024-08-16",
+        "rh8.9": "2024-08-16",
+        "sl12.5": "2024-08-15",
+        "sl15.2": "2024-08-14"
+      },
+      "Broken": {
+        "CI": false,
+        "Recipe": false,
+        "Dockerfile": true,
+        "Image": true,
+        "Binary": false
+      },
+      "imageSize": "750",
+      "CIDetails": {
+        "1": {
+          "Name": "CircleCI",
+          "jobLink": "https://circleci.com/gh/redis/redis",
+          "Badge": "https://circleci.com/gh/redis/redis/tree/main.svg",
+          "Primary": true
+        },
+        "2": {
+          "name": "GitHub Actions",
+          "jobLink": "https://github.com/redis/redis/actions",
+          "Badge": "https://github.com/redis/redis/workflows/CI/badge.svg",
+          "Primary": false
+        }
+      },
+      "Verification": null,
+      "Docker": {
+        "status": "SUCCESS",
+        "dockerFailureTime": "2024-08-15",
+        "dockerLastRunTime": "2024-08-16"
+      },
+      "Image": {
+        "status": "FAILURE",
+        "imageFailureTime": "2024-08-14",
+        "imageLastRunTime": "2024-08-16"
+      },
+      "ImageLinks": {
+        "redis:7.0": "https://hub.docker.com/_/redis/?tab=tags",
+        "prom/alertmanager:v0.27.0": "https://hub.docker.com/r/prom/alertmanager"
+      },
+      "BinaryLinks": {
+        "redis-7.0": "https://redis.io/download"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "66c0570c99488605a21a3e24"
+      },
+      "packageName": "Nginx",
+      "version": "1.21",
+      "publishedVersion": "1.21",
+      "successTime": "2024-08-16",
+      "failureTime": "2024-08-15",
+      "privateRunReason": "Nginx configuration issues",
+      "distroSuccess": "rh8.8,rh8.9",
+      "distroFailure": "sl12.5,sl15.2",
+      "status": "SUCCESS",
+      "comment": {
+        "date": "2024-08-16",
+        "commentText": "R: Nginx configuration issues resolved"
+      },
+      "owner": "ownerEF",
+      "unavailableDistros": "sl12.0, sl12.1, rh7.9",
+      "failureCount": {
+        "sl12.5": 0,
+        "sl15.2": 1,
+        "rh8.8": 0
+      },
+      "distroFailureTime": {
+        "sl12.5": "2024-08-15",
+        "sl15.2": "2024-08-14"
+      },
+      "distroLastRunTime": {
+        "rh8.8": "2024-08-16",
+        "rh8.9": "2024-08-16",
+        "sl12.5": "2024-08-15",
+        "sl15.2": "2024-08-14"
+      },
+      "Broken": {
+        "CI": false,
+        "Recipe": false,
+        "Dockerfile": false,
+        "Image": true,
+        "Binary": false
+      },
+      "imageSize": "680",
+      "CIDetails": {
+        "1": {
+          "Name": "Jenkins",
+          "jobLink": "https://jenkins.io/projects/nginx/",
+          "Badge": "https://img.shields.io/jenkins/build.svg",
+          "Primary": true
+        },
+        "2": {
+          "name": "GitLab CI",
+          "jobLink": "https://gitlab.com/nginx/nginx/pipelines",
+          "Badge": "https://gitlab.com/nginx/nginx/badge.svg",
+          "Primary": false
+        }
+      },
+      "Verification": null,
+      "Docker": {
+        "status": "SUCCESS",
+        "dockerFailureTime": "2024-08-15",
+        "dockerLastRunTime": "2024-08-16"
+      },
+      "Image": {
+        "status": "SUCCESS",
+        "imageFailureTime": "2024-08-14",
+        "imageLastRunTime": "2024-08-16"
+      },
+      "ImageLinks": {
+        "nginx:1.21": "https://hub.docker.com/_/nginx/?tab=tags",
+        "prom/alertmanager:v0.27.0": "https://hub.docker.com/r/prom/alertmanager"
+      },
+      "BinaryLinks": {
+        "nginx-1.21": "https://nginx.org/en/download/"
+      }
+    }
+  ]
+  

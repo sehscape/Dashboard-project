@@ -1,0 +1,152 @@
+[{
+  "_id": {
+    "$oid": "66c0570c99488605a21a3e21"
+  },
+  "packageName": "Alfresco",
+  "version": "6.4",
+  "publishedVersion": "8.0",
+  "successTime": "2024-08-16",
+  "failureTime": "2024-08-15",
+  "privateRunReason": "Failing on PS",
+  "distroSuccess": "rh8.8,rh8.9",
+  "distroFailure": "rh9.2,rh9.3",
+  "status": "SUCCESS",
+  "comment": {
+    "date": "2024-08-16",
+    "commentText": "R: Failing due to network error"
+  },
+  "owner": "ownerAB",
+  "unavailableDistros": "rh7.8, rh7.9, rh9.0",
+  "failureCount": {
+    "rh9.2": 0,
+    "rh9.3": 0,
+    "sl12.5": 1
+  },
+  "distroFailureTime": {
+    "rh9.2": "2024-08-09",
+    "rh9.3": "2024-08-10"
+  },
+  "distroLastRunTime": {
+    "rh8.8": "2024-08-16",
+    "rh8.9": "2024-08-16",
+    "rh9.2": "2024-08-09",
+    "rh9.3": "2024-08-10"
+  },
+  "Broken": {
+    "CI": false,
+    "Recipe": false,
+    "Dockerfile": true,
+    "Image": false,
+    "Binary": false
+  },
+  "imageSize": "850",
+  "CIDetails": {
+    "1": {
+      "Name": "circle CI",
+      "jobLink": "https://app.circleci.com/pipelines/github/prometheus/alertmanager",
+      "Badge": "https://app.circleci.com/pipelines/github/prometheus/alertmanager",
+      "Primary": true
+    },
+    "2": {
+      "name": "jenkins",
+      "jobLink": "https://ci-builds.apache.org/job/Camel/job/Camel%20Core%20(Build%20and%20test)/job/main/",
+      "Badge": "https://ci-builds.apache.org/job/Camel/job/Camel%20Core%20(Build%20and%20test)/job/main/badge/icon",
+      "Primary": false
+    }
+  },
+  "Verification": null,
+  "Docker": {
+    "status": "SUCCESS",
+    "dockerFailureTime": "2024-08-01",
+    "dockerLastRunTime": "2024-08-16"
+  },
+  "Image": {
+    "status": "SUCCESS",
+    "imageFailureTime": "2024-08-01",
+    "imageLastRunTime": "2024-08-16"
+  },
+  "ImageLinks": {
+    "httpd:2.4.62": "https://hub.docker.com/_/httpd/?tab=tags",
+    "prom/alertmanager:v0.27.0": "https://hub.docker.com/r/prom/alertmanager"
+  },
+  "BinaryLinks": {
+    "alertmanager:v0.27.0": "https://github.com/prometheus/alertmanager/releases/",
+    "apache-maven-3.9.8": "https://maven.apache.org/download.cgi"
+  }
+},
+{
+  "_id": {
+    "$oid": "66c0576099488605a21a3e22"
+  },
+  "packageName": "PostgreSQL",
+  "version": "14.2",
+  "publishedVersion": "14.2",
+  "successTime": "2024-08-16",
+  "failureTime": "2024-08-14",
+  "privateRunReason": "Failing on SL",
+  "distroSuccess": "rh8.8,rh8.9",
+  "distroFailure": "sl12.5,sl15.2",
+  "status": "SUCCESS",
+  "comment": {
+    "date": "2024-08-16",
+    "commentText": "R: Timeout issues with SL distros"
+  },
+  "owner": "ownerXY",
+  "unavailableDistros": "sl12.0, sl12.1, rh7.9",
+  "failureCount": {
+    "sl12.5": 1,
+    "sl15.2": 0,
+    "rh8.8": 0
+  },
+  "distroFailureTime": {
+    "sl12.5": "2024-08-14",
+    "sl15.2": "2024-08-13"
+  },
+  "distroLastRunTime": {
+    "rh8.8": "2024-08-16",
+    "rh8.9": "2024-08-16",
+    "sl12.5": "2024-08-14",
+    "sl15.2": "2024-08-13"
+  },
+  "Broken": {
+    "CI": true,
+    "Recipe": false,
+    "Dockerfile": false,
+    "Image": false,
+    "Binary": false
+  },
+  "imageSize": "920",
+  "CIDetails": {
+    "1": {
+      "Name": "GitLab CI",
+      "jobLink": "https://gitlab.com/postgres/postgresql/pipelines",
+      "Badge": "https://gitlab.com/postgres/postgresql/badge.svg",
+      "Primary": true
+    },
+    "2": {
+      "name": "Travis CI",
+      "jobLink": "https://travis-ci.org/github/postgres/postgresql",
+      "Badge": "https://travis-ci.org/github/postgres/postgresql/badge.svg",
+      "Primary": false
+    }
+  },
+  "Verification": null,
+  "Docker": {
+    "status": "FAILURE",
+    "dockerFailureTime": "2024-08-14",
+    "dockerLastRunTime": "2024-08-16"
+  },
+  "Image": {
+    "status": "SUCCESS",
+    "imageFailureTime": "2024-08-12",
+    "imageLastRunTime": "2024-08-16"
+  },
+  "ImageLinks": {
+    "postgres:14.2": "https://hub.docker.com/_/postgres/?tab=tags",
+    "prom/alertmanager:v0.27.0": "https://hub.docker.com/r/prom/alertmanager"
+  },
+  "BinaryLinks": {
+    "alertmanager:v0.27.0": "https://github.com/prometheus/alertmanager/releases/",
+    "postgresql-14.2": "https://www.postgresql.org/download/"
+  }
+}]
