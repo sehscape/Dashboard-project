@@ -5,19 +5,12 @@ import '../css/styles.css';
 const Report = ({ Toggle }) => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [recipes, setRecipes] = useState([]);
-//  const [comment, setComment] = useState(''); // State for the comment
 
   useEffect(() => {
     fetch('http://localhost:4000/getjobs')
       .then(response => response.json())
       .then(data => setJobs(data))
       .catch(error => console.error('Error fetching data:', error));
-
-    fetch('/detail.json')
-      .then(response => response.json())
-      .then(data => setRecipes(data.recipes))
-      .catch(error => console.error('Error fetching recipes data:', error));
   }, []);
 
   const handleRowClick = (job) => {
@@ -27,16 +20,6 @@ const Report = ({ Toggle }) => {
   const closeDrawer = () => {
     setSelectedJob(null);
   };
-
-  const chunkRecipes = (recipes, chunkSize) => {
-    const result = [];
-    for (let i = 0; i < recipes.length; i += chunkSize) {
-      result.push(recipes.slice(i, i + chunkSize));
-    }
-    return result;
-  };
-
-  const recipesInRows = chunkRecipes(recipes.flat(), 4);
 
   return (
     <div className={`report ${selectedJob ? 'drawer-open' : ''}`}>
@@ -55,12 +38,14 @@ const Report = ({ Toggle }) => {
             <tr>
               <th>#</th>
               <th>Package Name</th>
-              <th>Version</th>
-              <th>Published Version</th>
-              <th>Distro</th>
-              <th>Status</th>
-              <th>Job URL</th>
-              <th>Duration</th>
+              <th>Recipe</th>
+              <th>Docker</th>
+              <th>CI Links</th>
+              <th>Image</th>
+              <th>Binary</th>
+              <th>Comment</th>
+              <th>Size</th>
+              <th>Owner</th>
             </tr>
           </thead>
           <tbody>
@@ -68,12 +53,20 @@ const Report = ({ Toggle }) => {
               <tr key={job._id} onClick={() => handleRowClick(job)}>
                 <td>{index + 1}</td>
                 <td>{job.packageName}</td>
-                <td>{job.version}</td>
-                <td>{job.publishedVersion}</td>
-                <td>{job.distro}</td>
-                <td>{job.status}</td>
-                <td><a href={job.jobDetails.jobUrl} target="_blank" rel="noopener noreferrer">View Job</a></td>
-                <td>{job.jobDetails.duration.toFixed(2)} seconds</td>
+                <td>{job.Broken.Recipe ? 'Broken' : 'Not Broken'}</td>
+                <td>{job.Docker.status}</td>
+                <td>
+                  {Object.values(job.CIDetails).map((ci, ciIndex) => (
+                    <a key={ciIndex} href={ci.jobLink} target="_blank" rel="noopener noreferrer">
+                      {ci.Name}
+                    </a>
+                  ))}
+                </td>
+                <td>{job.Image.status}</td>
+                <td>{job.BinaryLinks ? Object.keys(job.BinaryLinks).join(', ') : 'N/A'}</td>
+                <td>{job.comment ? job.comment.commentText : 'No Comment'}</td>
+                <td>{job.imageSize}</td>
+                <td>{job.owner}</td>
               </tr>
             ))}
           </tbody>
@@ -87,12 +80,12 @@ const Report = ({ Toggle }) => {
             <h2>{selectedJob.packageName}</h2>
             <p><strong>Version:</strong> {selectedJob.version}</p>
             <p><strong>Published Version:</strong> {selectedJob.publishedVersion}</p>
-            <p><strong>Distro:</strong> {selectedJob.distro}</p>
+            <p><strong>Distro:</strong> {selectedJob.distroSuccess}</p>
             <p><strong>Status:</strong> {selectedJob.status}</p>
-            <p><strong>Job URL:</strong> <a href={selectedJob.jobDetails.jobUrl} target="_blank" rel="noopener noreferrer">View Job</a></p>
-            <p><strong>Duration:</strong> {selectedJob.jobDetails.duration.toFixed(2)} seconds</p>
+            <p><strong>Job URL:</strong> <a href={selectedJob.CIDetails[Object.keys(selectedJob.CIDetails)[0]].jobLink} target="_blank" rel="noopener noreferrer">View Job</a></p>
+            <p><strong>Duration:</strong> {selectedJob.Docker.dockerLastRunTime ? `${new Date() - new Date(selectedJob.Docker.dockerLastRunTime)} ms` : 'N/A'}</p>
 
-            <div className="recipe-grid">
+            {/* <div className="recipe-grid">
               <h3>Package Recipe</h3>
               <div className="recipe-table-container">
                 <table className="recipe-table">
@@ -107,12 +100,7 @@ const Report = ({ Toggle }) => {
                   </tbody>
                 </table>
               </div>
-            </div>
-
-           {/* Non-editable Comment Section 
-            <div className="comment-section">
-              <p className="comment-text">{comment}</p>
-            </div>  */}
+            </div> */}
           </div>
         )}
       </div>
