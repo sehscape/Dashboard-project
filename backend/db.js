@@ -5,6 +5,8 @@ module.exports = {
     MongoClient.connect("mongodb://localhost:27017/jenkins")
       .then((client) => {
         dbConnection = client.db();
+        console.log("connected to db");
+        
         return cb();
       })
       .catch((err) => {
