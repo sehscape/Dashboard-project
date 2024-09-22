@@ -1,83 +1,144 @@
 import React, { useState } from 'react';
+import '../css/styles.css'; // Ensure there is no CSS hiding the buttons
 
-const CommentSection = () => {
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
-  const [isEditing, setIsEditing] = useState(null);
-  const [editedComment, setEditedComment] = useState('');
+const CommentSection = ({ comments, owner, jobId, updateComments }) => {
+  const [newComment, setNewComment] = useState(''); // For new comment input
+  const [editingCommentId, setEditingCommentId] = useState(null); // Track comment being edited
+  const [editedCommentText, setEditedCommentText] = useState(''); // Track edited comment input
 
-  const handleAddComment = () => {
-    setComments([...comments, { text: newComment, id: Date.now() }]);
-    setNewComment('');
+  // Handle new comment input change
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
   };
 
-  const handleEditComment = (id) => {
-    const commentToEdit = comments.find(comment => comment.id === id);
-    setIsEditing(id);
-    setEditedComment(commentToEdit.text);
+  // Handle saving a new comment with the current date and time
+  const handleSaveComment = () => {
+    const savedComment = newComment;
+    const currentDate = new Date().toISOString(); // Get current date and time
+    setNewComment(''); // Clear input optimistically
+
+    fetch(`http://localhost:4000/updatecomment/${jobId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        commentText: savedComment,
+        date: currentDate, 
+      }),
+    })
+      .then((response) => response.json())
+      .then((updatedJob) => {
+        updateComments(updatedJob.comments); 
+        alert('Comment updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating comment:', error);
+        setNewComment(savedComment); // Revert input if there's an error
+        alert('Failed to update comment. Please try again.');
+      });
   };
 
-  const handleSaveEdit = (id) => {
-    const updatedComments = comments.map(comment =>
-      comment.id === id ? { ...comment, text: editedComment } : comment
-    );
-    setComments(updatedComments);
-    setIsEditing(null);
-    setEditedComment('');
+  // Handle deleting a comment
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = comments.filter((comment) => comment._id !== commentId);
+    updateComments(updatedComments); // Optimistically update UI
+
+    fetch(`http://localhost:4000/comments/${jobId}/${commentId}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Comment deleted successfully');
+        } else {
+          throw new Error('Failed to delete comment');
+        }
+      })
+      .catch((error) => {
+        console.error('Error deleting comment:', error);
+        alert('Failed to delete comment. Please try again.');
+      });
   };
 
-  const handleDeleteComment = (id) => {
-    const updatedComments = comments.filter(comment => comment.id !== id);
-    setComments(updatedComments);
+  // Handle editing a comment
+  const handleEditComment = (commentId, commentText) => {
+    setEditingCommentId(commentId); // Set the comment ID being edited
+    setEditedCommentText(commentText); // Set the current text for editing
   };
 
-  const handleSubmit = () => {
-    // Here you can send the comments data to the server
-    console.log('Comments submitted:', comments);
+  // Handle saving an edited comment
+  const handleSaveEditedComment = () => {
+    const currentDate = new Date().toISOString(); // Get current date and time
+
+    fetch(`http://localhost:4000/updatecomment/${jobId}/${editingCommentId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        commentText: editedCommentText,
+        date: currentDate, // Update date with current time
+      }),
+    })
+      .then((response) => response.json())
+      .then((updatedJob) => {
+        updateComments(updatedJob.comments); // Update comments in the frontend
+        setEditingCommentId(null); // Reset editing state
+        setEditedCommentText(''); // Clear input
+        alert('Comment edited successfully');
+      })
+      .catch((error) => {
+        console.error('Error editing comment:', error);
+        alert('Failed to edit comment. Please try again.');
+      });
   };
 
   return (
     <div className="comment-section">
-      <h3>Comments</h3>
+      <h3>Comments for {owner}</h3>
+
+      {/* Display previous comments */}
       <ul>
         {comments.map((comment) => (
-          <li key={comment.id} className="comment-item">
-            {isEditing === comment.id ? (
-              <div className="edit-container">
+          <li key={comment._id}>
+            {editingCommentId === comment._id ? (
+              <div>
                 <textarea
-                  className="edit-textarea"
-                  value={editedComment}
-                  onChange={(e) => setEditedComment(e.target.value)}
+                  value={editedCommentText}
+                  onChange={(e) => setEditedCommentText(e.target.value)}
+                  rows="2"
+                  cols="50"
                 />
-                <div className="edit-buttons">
-                  <button onClick={() => handleSaveEdit(comment.id)}>Save</button>
-                  <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                </div>
+                <button onClick={handleSaveEditedComment} disabled={!editedCommentText.trim()}>
+                  Save Edit
+                </button>
+                <button onClick={() => setEditingCommentId(null)}>Cancel</button>
               </div>
             ) : (
-              <div className="comment-content">
-                <span>{comment.text}</span>
-                <div className="comment-buttons">
-                  <button onClick={() => handleEditComment(comment.id)}>Edit</button>
-                  <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                </div>
+              <div>
+                <strong>Date:</strong> {new Date(comment.date).toLocaleString()} <br />
+                <strong>Comment:</strong> {comment.commentText}
+                <button onClick={() => handleEditComment(comment._id, comment.commentText)}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
               </div>
             )}
           </li>
         ))}
       </ul>
-      <div className="add-comment-container">
-        <input
-          type="text"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Add a comment"
-        />
-        <button onClick={handleAddComment}>Add Comment</button>
-      </div>
-      <div className="submit-button-container">
-        <button onClick={handleSubmit}>Submit</button>
-        </div>
+
+      {/* New Comment Input */}
+      <textarea
+        value={newComment}
+        onChange={handleCommentChange}
+        rows="4"
+        cols="50"
+        placeholder="Add a new comment..."
+      />
+      <button onClick={handleSaveComment} disabled={!newComment.trim()}>
+        Add Comment
+      </button>
     </div>
   );
 };

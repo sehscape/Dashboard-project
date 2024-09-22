@@ -9,7 +9,9 @@ const Overview = ({ Toggle }) => {
   const [data, setData] = useState({
     totalPackages: 0,
     completedBuilds: 0,
-    failedBuilds: 0,
+    rhel: 0,
+    sles:0,
+    ubuntu: 0 ,
     inProgress: 0,
   });
 
@@ -35,8 +37,16 @@ const Overview = ({ Toggle }) => {
             <p>{data.completedBuilds}</p>
           </div>
           <div className="card red">
-            <h2>Failed Builds</h2>
-            <p>{data.failedBuilds}</p>
+            <h2>Failed Builds rhel</h2>
+            <p>{data.rhel}</p>
+          </div>
+          <div className="card red">
+            <h2>Failed Builds sles</h2>
+            <p>{data.sles}</p>
+          </div>
+          <div className="card red">
+            <h2>Failed Builds ubuntu</h2>
+            <p>{data.ubuntu}</p>
           </div>
           <div className="card yellow">
             <h2>In Progress</h2>

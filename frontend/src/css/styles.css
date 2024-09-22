@@ -246,165 +246,48 @@ th {
 /***********************/
 
 
-/* Comment Section */
-.comment-section {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-.comment-section h3 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.comment-section ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.comment-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.comment-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.comment-content span {
-  display: block;
-  width: 500px; /* Fixed width */
-  height: auto; /* Height adjusts based on text */
-  word-wrap: break-word; /* Wrap long words */
-}
-
-.comment-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.comment-buttons button {
-  margin-left: 10px;
-}
-
-.edit-buttons button {
-  margin-right: 10px; /* Adjust the value to set the desired space */
-}
-
-.edit-container {
-  display: flex;
-  align-items: flex-start;
-}
-
-.edit-textarea {
-  width: 500px;
-  height: auto; 
-  min-height: 60px; 
-  margin-right: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical; 
-  box-sizing: border-box;
-}
-
-
-.comment-section button {
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  color: #fff;
-  background-color: #2282e9;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 5px;
-}
-
-.comment-section button:hover {
-  background-color: #2282e9;
-}
-
-.comment-section button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.add-comment-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.add-comment-container input[type="text"] {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-  margin-right: 10px;
-}
-
-.add-comment-container button {
-  background-color: 2282e9;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.add-comment-container button:hover {
-  background-color: #2282e9;
-}
-
-.submit-button-container {
-  margin-top: 10px;
-}
-
-.submit-button-container button {
-  width: 120px;
-}
-/* End */
-
-
 /* Recipe.css */
 .jenkins-report {
+  width: 100%; /* Ensure it spans the full width of the viewport */
   padding: 20px;
-  background-color: white; /* Same background color as Overview and Report pages */
-  border-radius: 10px; /* Consistent border radius */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Consistent shadow */
-  max-width: 100%; /* Consistent maximum width */
-  margin: 20px auto; /* Center horizontally and add space above and below */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(102, 102, 102, 0.1);
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box; /* Include padding and border in the width */
+  margin: 20px auto; /* Center horizontally and add space above and below */
 }
 
 .main-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction:column;
+  gap: 10px;
+  max-width: 100%;
 }
 
 .cards-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
+  justify-content: center; /* Center the cards horizontally */
+  max-width: 100%;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
-.outer-card {
+.left-card {
   flex: 1 1 auto;
   background-color:  rgb(227, 243, 252);
-  max-width: 100%; /* Ensure it does not exceed the width of its container */
+  max-width: 70%; 
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.right-card {
+  flex: 1 1 auto;
+  background-color:  rgb(227, 243, 252);
+  max-width: 30%; /* Ensure it does not exceed the width of its container */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -423,21 +306,21 @@ th {
   border: 1px solid #ccc;
 }
 
+.table-section table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures borders are collapsed */
+}
+
+.table-section, .recipe-table {
+  overflow-x: auto; /* Allows horizontal scrolling if tables overflow */
+}
+
 .table-section td {
-  color: #000000; /* Dark gray font color for data cells */
+  color: #ffffff; /* Dark gray font color for data cells */
 }
 
 .recipe-table {
-  margin-top: 20px;
-}
-
-.recipe-table th, .recipe-table td, .table-section th, .table-section td ,.package-table td, .package-table th {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ffffff;
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Ellipsis for overflow text */
+  margin-top: 10px;
 }
 
 .recipe-table td {
@@ -452,6 +335,16 @@ th {
 .recipe-table h2 {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.recipe-table th, .recipe-table td, .table-section th, .table-section td ,.package-table td, .package-table th {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ffffff;
+  border-collapse: collapse;
+  white-space: wrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Ellipsis for overflow text */
 }
 
 .download-btn {
@@ -483,6 +376,7 @@ th {
   align-items: center;
   gap: 10px;
   font-size: 16px;
+  color: #000000
 }
 
 .button-section {
@@ -503,6 +397,7 @@ th {
 .edit-btn:hover, .submit-btn:hover {
   background-color: #7da6ff;
 }
+
 
 .legends-section {
   margin-top: 20px;
@@ -542,3 +437,50 @@ th {
 .legend-color.jenkins-broken { background-color: #9e9e9e; }
 .legend-color.broken { background-color: #ff5722; }
 .legend-color.job-not-run { background-color: #9c27b0; }
+
+
+/* Comment Section */
+.comment-section {
+  margin-top: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.comment-section h3 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.comment-section textarea {
+  width: 100%; /* Fit the width minus padding */
+  height: 60px; /* Make the textarea shorter */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em; /* Smaller text size */
+}
+
+.comment-section button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 0.9em; /* Match button font size with textarea */
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-section button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.comment-section button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
